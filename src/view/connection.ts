@@ -28,11 +28,6 @@ export class Connection extends Emitter {
     }
 
     update() {
-        console.log('Update connextion', {
-            el: this.el,
-            connection: this.connection,
-            points: this.getPoints()
-        })
         this.trigger('updateconnection', {
             el: this.el,
             connection: this.connection,

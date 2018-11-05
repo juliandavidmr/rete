@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "module": "es2015",
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "target": "es5",
+        "composite": true,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "lib": [
+            "dom",
+            "es2017"
+        ]
+    }
+}
