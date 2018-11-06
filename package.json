@@ -5,13 +5,16 @@
   "main": "dist/bz-rete/rete.min.js",
   "types": "dist/bz-rete/src/index.d.ts",
   "scripts": {
-    "build": "rollup -c && npm run compress && npm run cp:package",
+    "build": "rollup -c && npm run compress && npm run copy",
     "watch": "rollup -cw",
     "lint": "eslint src --fix",
     "compress": "terser --compress -o dist/bz-rete/rete.min.js -- dist/bz-rete/rete.min.js",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register",
     "test:ms": "set BABEL_ENV=test && mocha --compilers js:babel-core/register --require babel-polyfill",
-    "cp:package": "copyfiles -f \"package.json\" ./dist/bz-rete"
+    "cp:package": "copyfiles -f \"package.json\" ./dist/bz-rete",
+    "cp:license": "copyfiles -f \"LICENSE\" ./dist/bz-rete",
+    "cp:readme": "copyfiles -f \"README.md\" ./dist/bz-rete",
+    "copy": "npm run cp:package && npm run cp:license && npm run cp:readme"
   },
   "repository": {
     "type": "git",
