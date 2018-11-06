@@ -2,13 +2,13 @@
   "name": "rete",
   "version": "1.0.0-beta.0",
   "description": "JavaScript framework",
-  "main": "build/bz-rete/rete.min.js",
-  "types": "build/bz-rete/src/index.d.ts",
+  "main": "dist/bz-rete/rete.min.js",
+  "types": "dist/bz-rete/src/index.d.ts",
   "scripts": {
     "build": "rollup -c && npm run compress",
     "watch": "rollup -cw",
     "lint": "eslint src --fix",
-    "compress": "terser --compress -o build/bz-rete/rete.min.js -- build/bz-rete/rete.min.js",
+    "compress": "terser --compress -o dist/bz-rete/rete.min.js -- dist/bz-rete/rete.min.js",
     "build:prod": "rete --build rete.config.js",
     "build:dev": "rete --build rete.config.js --watch",
     "prepublishOnly": "npm run lint && npm run build",
@@ -20,7 +20,7 @@
     "url": "git+https://github.com/retejs/rete.git"
   },
   "files": [
-    "build/"
+    "dist/"
   ],
   "author": "Ni55aN",
   "keywords": [

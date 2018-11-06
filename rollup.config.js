@@ -16,7 +16,7 @@ export default {
     ],
     plugins: [
         clear({
-            targets: ['build']
+            targets: ['dist']
         }),
         typescript({
             typescript: require('typescript'),
