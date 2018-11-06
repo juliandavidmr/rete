@@ -24,13 +24,6 @@ Check the [docs](https://rete.readthedocs.io/en/latest/) and learn about the com
 
 Examples
 ----
-[Flow-based programming](https://codepen.io/Ni55aN/pen/xzgQYq)
-
-[Events (tasks)](https://codepen.io/Ni55aN/pen/MOYPEz)
-
-[Modules](https://codepen.io/Ni55aN/pen/QOEbEW)
-
-[Programming a Messenger Bot](https://codepen.io/Ni55aN/pen/rpOKNb)
 
 [3D Car configurator](https://codesandbox.io/embed/9jp88p1jpy?view=preview)
 

@@ -1,6 +1,6 @@
 {
   "name": "bz-rete",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "JavaScript framework",
   "main": "dist/bz-rete/rete.min.js",
   "types": "dist/bz-rete/src/index.d.ts",
@@ -15,9 +15,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/retejs/rete.git"
+    "url": "git+https://bizagidev.visualstudio.com/DefaultCollection/FrontEnd/_git/Rete"
   },
-  "author": "Ni55aN",
+  "author": "Cloud",
   "keywords": [
     "dataflow",
     "visual programming",
