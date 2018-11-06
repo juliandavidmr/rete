@@ -5,7 +5,7 @@ import typescript from 'rollup-plugin-typescript2'
 export default {
     input: 'src/index.ts',
     output: [{
-        file: pkg.main,
+        file: './dist/bz-rete/rete.min.js',
         sourcemap: true,
         name: 'Rete',
         format: 'umd'
