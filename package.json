@@ -5,7 +5,7 @@
   "main": "dist/bz-rete/rete.min.js",
   "types": "dist/bz-rete/src/index.d.ts",
   "scripts": {
-    "build": "rollup -c && npm run compress",
+    "build": "rollup -c && npm run compress && npm run cp:package",
     "watch": "rollup -cw",
     "lint": "eslint src --fix",
     "compress": "terser --compress -o dist/bz-rete/rete.min.js -- dist/bz-rete/rete.min.js",
@@ -13,7 +13,8 @@
     "build:dev": "rete --build rete.config.js --watch",
     "prepublishOnly": "npm run lint && npm run build",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register",
-    "test:ms": "set BABEL_ENV=test && mocha --compilers js:babel-core/register --require babel-polyfill"
+    "test:ms": "set BABEL_ENV=test && mocha --compilers js:babel-core/register --require babel-polyfill",
+    "cp:package": "cp package.json dist/bz-rete/"
   },
   "repository": {
     "type": "git",
