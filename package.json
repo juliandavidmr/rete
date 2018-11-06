@@ -1,14 +1,14 @@
 {
   "name": "rete",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.0",
   "description": "JavaScript framework",
-  "main": "build/rete.min.js",
-  "types": "build/src/index.d.ts",
+  "main": "build/bz-rete/rete.min.js",
+  "types": "build/bz-rete/src/index.d.ts",
   "scripts": {
     "build": "rollup -c && npm run compress",
     "watch": "rollup -cw",
     "lint": "eslint src --fix",
-    "compress": "terser --compress -o build/rete.min.js -- build/rete.min.js",
+    "compress": "terser --compress -o build/bz-rete/rete.min.js -- build/bz-rete/rete.min.js",
     "build:prod": "rete --build rete.config.js",
     "build:dev": "rete --build rete.config.js --watch",
     "prepublishOnly": "npm run lint && npm run build",
@@ -22,13 +22,13 @@
   "files": [
     "build/"
   ],
+  "author": "Ni55aN",
   "keywords": [
     "dataflow",
     "visual programming",
     "node editor",
     "js"
   ],
-  "author": "Ni55aN",
   "contributors": [
     {
       "email": "anlijudavid@hotmail.com",

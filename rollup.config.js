@@ -1,20 +1,3 @@
-// export default [{
-//     input: 'src/index.ts',
-//     name: 'Rete'
-// },
-// {
-//     input: 'src/engine/index.js',
-//     name: 'ReteEngine',
-//     plugins: [
-//         typescript({
-//             typescript: typescript2
-//         }),
-//         copy({
-//             'src/engine/engine.d.ts': 'build/rete.engine.d.ts'
-//         })
-//     ]
-// }];
-
 import clear from 'rollup-plugin-clear'
 import pkg from './package.json'
 import typescript from 'rollup-plugin-typescript2'
