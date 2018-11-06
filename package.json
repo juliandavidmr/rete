@@ -1,5 +1,5 @@
 {
-  "name": "rete",
+  "name": "bz-rete",
   "version": "1.0.0-beta.0",
   "description": "JavaScript framework",
   "main": "dist/bz-rete/rete.min.js",
