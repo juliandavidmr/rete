@@ -9,9 +9,6 @@
     "watch": "rollup -cw",
     "lint": "eslint src --fix",
     "compress": "terser --compress -o dist/bz-rete/rete.min.js -- dist/bz-rete/rete.min.js",
-    "build:prod": "rete --build rete.config.js",
-    "build:dev": "rete --build rete.config.js --watch",
-    "prepublishOnly": "npm run build",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register",
     "test:ms": "set BABEL_ENV=test && mocha --compilers js:babel-core/register --require babel-polyfill",
     "cp:package": "copyfiles -f \"package.json\" ./dist/bz-rete"
@@ -20,9 +17,6 @@
     "type": "git",
     "url": "git+https://github.com/retejs/rete.git"
   },
-  "files": [
-    "dist/"
-  ],
   "author": "Ni55aN",
   "keywords": [
     "dataflow",
