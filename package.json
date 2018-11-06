@@ -14,7 +14,7 @@
     "prepublishOnly": "npm run lint && npm run build",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register",
     "test:ms": "set BABEL_ENV=test && mocha --compilers js:babel-core/register --require babel-polyfill",
-    "cp:package": "cp package.json dist/bz-rete/"
+    "cp:package": "copyfiles -f \"package.json\" ./dist/bz-rete"
   },
   "repository": {
     "type": "git",
@@ -56,7 +56,8 @@
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-typescript2": "^0.17.2",
     "terser": "^3.10.10",
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "copyfiles": "^2.0.0"
   },
   "babel": {
     "presets": [
