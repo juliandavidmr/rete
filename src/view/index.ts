@@ -14,15 +14,15 @@ export class EditorView extends Emitter {
     constructor(public container: HTMLElement, public components: Map<string, Component>, emitter: Emitter) {
         super(emitter);
 
-        this.container.style.overflow = 'hidden';
-        this.container.addEventListener('click', this.click.bind(this));
-        this.container.addEventListener('contextmenu', e => this.trigger('contextmenu', { e, view: this }));
+        container.style.overflow = 'hidden';
+        container.addEventListener('click', this.click.bind(this));
+        container.addEventListener('contextmenu', e => this.trigger('contextmenu', { e, view: this }));
         window.addEventListener('resize', this.resize.bind(this));
 
         this.on('nodetranslated', this.updateConnections.bind(this));
 
         this.area = new Area(container, this);
-        this.container.appendChild(this.area.el);
+        container.appendChild(this.area.el);
     }
 
     addNode(node: any) {

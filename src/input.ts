@@ -12,12 +12,12 @@ export class Input extends IO {
         super(key, title, socket, multiConns);
     }
 
-    get hasConnection() {
+    hasConnection() {
         return this.connections.length > 0;
     }
 
     addConnection(connection: Connection) {
-        if (!this.multipleConnections && this.hasConnection) Throw.error`Multiple connections not allowed`
+        if (!this.multipleConnections && this.hasConnection()) Throw.error`Multiple connections not allowed`
         this.connections.push(connection);
     }
 
