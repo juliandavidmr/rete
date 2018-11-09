@@ -3,14 +3,15 @@ import { Connection } from '../connection';
 import { Emitter } from '../core/emitter';
 import { Connection as ViewConnection } from './connection';
 import { Node as ViewNode } from './node';
+import { Component } from '../component';
 
 export class EditorView extends Emitter {
 
     nodes = new Map();
     connections = new Map();
-    area: any;
+    area: Area;
 
-    constructor(public container: HTMLElement, public components: Map<string, any>, emitter: Emitter) {
+    constructor(public container: HTMLElement, public components: Map<string, Component>, emitter: Emitter) {
         super(emitter);
 
         this.container.style.overflow = 'hidden';

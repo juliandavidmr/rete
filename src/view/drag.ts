@@ -3,10 +3,9 @@ export class Drag {
     mouseStart: any = null;
 
     constructor(public el: HTMLElement,
-        public onTranslate = (a: number, b: number, e: any) => { },
+        public onTranslate = (a: number, b: number, e: Event) => { },
         public onStart = (e: any) => { },
-        public onDrag = (e: any) => { }
-    ) {
+        public onDrag = (e: any) => { }) {
         this.initEvents(el);
     }
 
@@ -24,11 +23,10 @@ export class Drag {
 
     getCoords(e: any) {
         const props = e.touches ? e.touches[0] : e;
-
         return [props.pageX, props.pageY];
     }
 
-    down(e: any) {
+    down(e: Event) {
         e.stopPropagation();
         this.mouseStart = this.getCoords(e);
 
@@ -47,7 +45,7 @@ export class Drag {
         this.onTranslate(delta[0] / zoom, delta[1] / zoom, e);
     }
 
-    up(e: any) {
+    up(e: Event) {
         if (!this.mouseStart) return;
 
         this.mouseStart = null;

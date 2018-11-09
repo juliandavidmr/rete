@@ -2,6 +2,7 @@ import { Connection } from './connection';
 import { Control } from './control';
 import { IO } from './io';
 import { Socket } from './socket';
+import { Throw } from './helpers/throw';
 
 export class Input extends IO {
 
@@ -11,13 +12,12 @@ export class Input extends IO {
         super(key, title, socket, multiConns);
     }
 
-    hasConnection() {
+    get hasConnection() {
         return this.connections.length > 0;
     }
 
     addConnection(connection: Connection) {
-        if (!this.multipleConnections && this.hasConnection())
-            throw new Error('Multiple connections not allowed');
+        if (!this.multipleConnections && this.hasConnection) Throw.error`Multiple connections not allowed`
         this.connections.push(connection);
     }
 
@@ -27,7 +27,7 @@ export class Input extends IO {
     }
 
     showControl() {
-        return !this.hasConnection() && this.control !== null;
+        return !this.hasConnection && this.control !== null;
     }
 
     toJSON() {

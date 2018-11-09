@@ -16,7 +16,7 @@ export class Output extends IO {
     connectTo(input: Input) {
         if (!this.socket.compatibleWith(input.socket))
             throw new Error('Sockets not compatible');
-        if (!input.multipleConnections && input.hasConnection())
+        if (!input.multipleConnections && input.hasConnection)
             throw new Error('Input already has one connection');
         if (!this.multipleConnections && this.hasConnection())
             throw new Error('Output already has one connection');
@@ -35,7 +35,7 @@ export class Output extends IO {
 
     toJSON() {
         return {
-            'connections': this.connections.map(c => {
+            connections: this.connections.map(c => {
                 return {
                     node: c.input.node.id,
                     input: c.input.key,

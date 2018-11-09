@@ -10,7 +10,7 @@ export class Zoom {
         container.addEventListener('dblclick', this.dblclick.bind(this));
     }
 
-    wheel(e: any) {
+    wheel(e: WheelEvent) {
         e.preventDefault();
 
         var rect = this.el.getBoundingClientRect();
@@ -22,7 +22,7 @@ export class Zoom {
         this.onzoom(delta, ox, oy, 'wheel');
     }
 
-    touches(e: any) {
+    touches(e: TouchEvent) {
         let [x1, y1] = [e.touches[0].clientX, e.touches[0].clientY];
         let [x2, y2] = [e.touches[1].clientX, e.touches[1].clientY];
         let distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
@@ -34,7 +34,7 @@ export class Zoom {
         };
     }
 
-    move(e: any) {
+    move(e: TouchEvent) {
         if (e.touches.length < 2) return;
 
         let rect = this.el.getBoundingClientRect();
@@ -55,7 +55,7 @@ export class Zoom {
         this.distance = null;
     }
 
-    dblclick(e: any) {
+    dblclick(e: MouseEvent) {
         e.preventDefault();
 
         var rect = this.el.getBoundingClientRect();

@@ -22,7 +22,7 @@ export class Validator {
         if (id1[0] !== id2[0])
             msg += 'Names don\'t match. ';
         if (id1[1] !== id2[1])
-            msg += 'Versions don\'t match';
+            msg += 'Versions don\'t match ';
 
         return { success: msg === '', msg };
     }

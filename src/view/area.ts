@@ -6,21 +6,20 @@ import { KeyValue } from '../interfaces/generic';
 export class Area extends Emitter {
 
     el: HTMLElement;
-    private transform: KeyValue<number> = { k: 1, x: 0, y: 0 };
     mouse = { x: 0, y: 0 };
+    private transform: KeyValue<number> = { k: 1, x: 0, y: 0 };
     private _startPosition: any;
     private _zoom_: Zoom;
     private _drag_: Drag;
 
-    constructor(public container: HTMLElement, emitter: Emitter) {
+    constructor(container: HTMLElement, emitter: Emitter) {
         super(emitter);
 
         const el = this.el = document.createElement('div');
-
         el.style.transformOrigin = '0 0';
         this._zoom_ = new Zoom(container, el, 0.1, this.onZoom.bind(this));
         this._drag_ = new Drag(container, this.onTranslate.bind(this), this.onStart.bind(this));
-        this.container.addEventListener('mousemove', this.mousemove.bind(this));
+        container.addEventListener('mousemove', this.mousemove.bind(this));
 
         this.update();
     }
@@ -67,7 +66,7 @@ export class Area extends Emitter {
         this.trigger('translated', null);
     }
 
-    zoom(zoom: any, ox = 0, oy = 0, source: any) {
+    zoom(zoom: number, ox = 0, oy = 0, source: string) {
         const k = this.transform.k;
         const params = { transform: this.transform, zoom, source };
 

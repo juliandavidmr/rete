@@ -1,4 +1,6 @@
 import { Events } from './events';
+import { Throw } from '../helpers/throw';
+import { EventNames } from '../interfaces/event-names';
 
 export class Emitter {
 
@@ -9,12 +11,11 @@ export class Emitter {
         this.events = events instanceof Emitter ? events.events : events.handlers;
     }
 
-    public on(names: string, handler: Function) {
-        if (typeof handler !== 'function') {
-            throw new Error('Handler is not a function.');
-        }
+    on(names: string, handler: Function) {
+        if (typeof handler !== 'function') Throw.error`Handler is not a function.`
+
         names.split(' ').forEach(name => {
-            if (!this.events[name]) throw new Error(`The event ${name} does not exist`);
+            if (!this.events[name]) Throw.error`The event ${name} does not exist`
 
             this.events[name].push(handler);
         });
@@ -22,7 +23,7 @@ export class Emitter {
         return this;
     }
 
-    trigger(name: string, params?: any) {
+    trigger(name: EventNames, params?: any) {
         if (!(name in this.events))
             throw new Error(`The event ${name} cannot be triggered`);
 

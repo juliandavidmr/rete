@@ -1,23 +1,18 @@
 import { Node } from './node';
+import { Throw } from './helpers/throw';
 
 export class Control {
 
-    data: any;
-    parent: any;
+    data: any = {};
+    parent: Node | any;
 
     constructor(public key: string) {
-        if (this.constructor === Control)
-            throw new TypeError('Can not construct abstract class');
-        if (!key)
-            throw new Error('The key parameter is missing in super() of Control ');
-
-        this.data = {};
-        this.parent = null;
+        if (this.constructor === Control) Throw.type`Can not construct abstract class`;
+        if (!key) Throw.required`The key parameter is missing in super() of Control`;
     }
 
     getNode(): Node {
-        if (this.parent === null)
-            throw new Error("Control isn't added to Node/Input");
+        if (this.parent === null) Throw.error`Control isn't added to Node/Input`;
 
         return this.parent instanceof Node ? this.parent : this.parent.node;
     }

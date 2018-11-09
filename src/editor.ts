@@ -8,6 +8,7 @@ import { Node } from './node';
 import { Output } from './output';
 import { Selected } from './selected';
 import { Validator } from './core/validator';
+import { Throw } from './helpers/throw';
 
 type KeyValue = { [key: string]: any };
 
@@ -18,7 +19,7 @@ export class NodeEditor extends Context {
     selected: Selected;
     view: EditorView;
 
-    constructor(public id: string, public container: HTMLElement) {
+    constructor(id: string, public container: HTMLElement) {
         super(id, new EditorEvents());
 
         if (!container && !(container instanceof HTMLElement)) {
@@ -97,8 +98,7 @@ export class NodeEditor extends Context {
     getComponent(name: string) {
         const component = this.components.get(name);
 
-        if (!component)
-            throw `Component ${name} not found`;
+        if (!component) Throw.error`Component ${name} not found`;
 
         return component;
     }
@@ -142,7 +142,7 @@ export class NodeEditor extends Context {
 
     async fromJSON(json: any) {
         if (!this.beforeImport(json)) return false;
-        var nodes: KeyValue = {};
+        const nodes: KeyValue = {};
 
         try {
             await Promise.all(Object.keys(json.nodes).map(async id => {
@@ -154,25 +154,23 @@ export class NodeEditor extends Context {
             }));
 
             Object.keys(json.nodes).forEach(id => {
-                var jsonNode = json.nodes[id];
-                var node = nodes[id];
+                const jsonNode = json.nodes[id];
+                const node = nodes[id];
 
                 Object.keys(jsonNode.outputs).forEach(key => {
-                    var outputJson = jsonNode.outputs[key];
+                    const outputJson = jsonNode.outputs[key];
 
                     outputJson.connections.forEach((jsonConnection: any) => {
-                        var nodeId = jsonConnection.node;
-                        var data = jsonConnection.data;
-                        var targetOutput = node.outputs.get(key);
-                        var targetInput = nodes[nodeId].inputs.get(jsonConnection.input);
+                        const nodeId = jsonConnection.node;
+                        const data = jsonConnection.data;
+                        const targetOutput = node.outputs.get(key);
+                        const targetInput = nodes[nodeId].inputs.get(jsonConnection.input);
 
                         this.connect(targetOutput, targetInput, data);
                     });
                 });
-
             });
-        }
-        catch (e) {
+        } catch (e) {
             this.trigger('warn', e);
             return !this.afterImport();
         } finally {
