@@ -7,6 +7,7 @@ import { Throw } from './helpers/throw';
 export class Input extends IO {
 
     control: Control = null;
+    meta: any = {};
 
     constructor(key: string, title: string, socket: Socket, multiConns: boolean = false) {
         super(key, title, socket, multiConns);
@@ -38,7 +39,8 @@ export class Input extends IO {
                     output: c.output.key,
                     data: c.data
                 };
-            })
+            }),
+            meta: this.meta
         };
     }
 }

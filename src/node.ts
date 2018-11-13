@@ -87,7 +87,8 @@ export class Node {
             inputs: Array.from(this.inputs).reduce((obj: any, [key, input]) => (obj[key] = input.toJSON(), obj), {}),
             outputs: Array.from(this.outputs).reduce((obj: any, [key, output]) => (obj[key] = output.toJSON(), obj), {}),
             position: this.position,
-            name: this.name
+            name: this.name,
+            meta: this.meta
         }
     }
 
