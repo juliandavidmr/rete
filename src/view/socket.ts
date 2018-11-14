@@ -1,6 +1,6 @@
 import { Emitter } from '../core/emitter';
 import { IO } from '../io';
-import { Node } from './node';
+import { Node } from '../node';
 
 export class Socket extends Emitter {
 

@@ -5,17 +5,18 @@ import { IO } from '../io';
 import { ControlView } from './control';
 import { Socket as ViewSocket, Socket } from './socket';
 import { ComponentEngine } from '../engine/index';
+import { Node as Node2 } from "../node";
 
 export class Node extends Emitter {
 
-    public sockets = new Map<any, any>();
+    public sockets = new Map<IO, any>();
     controls = new Map<any, any>();
     el: HTMLDivElement;
     private _startPosition: any = null;
     private _drag: Drag;
     position: any;
 
-    constructor(public node: Node, public component: ComponentEngine, emitter: Emitter) {
+    constructor(public node: Node2, public component: ComponentEngine, emitter: Emitter) {
         super(emitter);
 
         this.el = document.createElement('div');

@@ -3,12 +3,14 @@ import { Connection } from '../connection';
 import { Emitter } from '../core/emitter';
 import { Connection as ViewConnection } from './connection';
 import { Node as ViewNode } from './node';
+import { Node as Node2 } from '../node';
 import { Component } from '../component';
+import { Throw } from '../helpers/throw';
 
 export class EditorView extends Emitter {
 
-    nodes = new Map();
-    connections = new Map();
+    nodes = new Map<Node2, ViewNode>();
+    connections = new Map<Connection, ViewConnection>();
     area: Area;
 
     constructor(public container: HTMLElement, public components: Map<string, Component>, emitter: Emitter) {
@@ -25,18 +27,21 @@ export class EditorView extends Emitter {
         container.appendChild(this.area.el);
     }
 
-    addNode(node: any) {
+    addNode(node: Node2) {
         const nodeView = new ViewNode(node, this.components.get(node.name), this);
 
         this.nodes.set(node, nodeView);
         this.area.appendChild(nodeView.el);
     }
 
-    removeNode(node: any) {
+    removeNode(node: Node2) {
         const nodeView = this.nodes.get(node);
-
-        this.nodes.delete(node);
-        this.area.removeChild(nodeView.el);
+        if (nodeView) {
+            this.nodes.delete(node);
+            this.area.removeChild(nodeView.el);
+        } else {
+            console.error(`The node ${node.name} can not remove.`, nodeView, node)
+        }
     }
 
     addConnection(connection: Connection) {

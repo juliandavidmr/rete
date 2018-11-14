@@ -47,7 +47,7 @@ export class NodeEditor extends Context {
         this.trigger('nodecreated', node);
     }
 
-    removeNode(node: Node) {
+    removeNode(node: Node = Throw.requireInstance(Node) as any) {
         if (!this.trigger('noderemove', node)) return;
 
         node.getConnections().forEach((c: Connection) => this.removeConnection(c));

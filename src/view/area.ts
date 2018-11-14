@@ -8,7 +8,7 @@ export class Area extends Emitter {
     el: HTMLElement;
     mouse = { x: 0, y: 0 };
     private transform: KeyValue<number> = { k: 1, x: 0, y: 0 };
-    private _startPosition: any;
+    private _startPosition: KeyValue<number>;
     private _zoom_: Zoom;
     private _drag_: Drag;
 
@@ -25,9 +25,8 @@ export class Area extends Emitter {
     }
 
     update() {
-        const t = this.transform;
-
-        this.el.style.transform = `translate(${t.x}px, ${t.y}px) scale(${t.k})`;
+        const { x, y, k } = this.transform;
+        this.el.style.transform = `translate(${x}px, ${y}px) scale(${k})`;
     }
 
     mousemove(e: MouseEvent) {
