@@ -16,7 +16,6 @@ This project is a bifurcation of ReteJS, with some differences:
 Features under development:
 - Decorators for the creation of components, controls, events, etc. e.g: `@Component`, `@Control`, `@Event`...
 - Automatic documentation of functions, classes and constants.
-- [Possibly] Event management with Rx observables.
 
 Documentation
 ----

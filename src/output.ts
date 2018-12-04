@@ -5,8 +5,6 @@ import { Socket } from './socket';
 
 export class Output extends IO {
 
-    meta: any = {}
-
     constructor(key: string, title: string, socket: Socket, multiConns: boolean = true) {
         super(key, title, socket, multiConns);
     }
@@ -43,8 +41,7 @@ export class Output extends IO {
                     input: c.input.key,
                     data: c.data
                 }
-            }),
-            meta: this.meta
+            })
         };
     }
 }

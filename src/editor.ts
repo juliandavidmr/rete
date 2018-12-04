@@ -47,7 +47,7 @@ export class NodeEditor extends Context {
         this.trigger('nodecreated', node);
     }
 
-    removeNode(node: Node = Throw.requireInstance(Node) as any) {
+    removeNode(node: Node) {
         if (!this.trigger('noderemove', node)) return;
 
         node.getConnections().forEach((c: Connection) => this.removeConnection(c));
@@ -146,8 +146,8 @@ export class NodeEditor extends Context {
 
         try {
             await Promise.all(Object.keys(json.nodes).map(async id => {
-                var node = json.nodes[id];
-                var component = this.getComponent(node.name);
+                const node = json.nodes[id];
+                const component = this.getComponent(node.name);
 
                 nodes[id] = await component.build(Node.fromJSON(node));
                 this.addNode(nodes[id]);

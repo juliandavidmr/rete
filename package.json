@@ -1,6 +1,6 @@
 {
   "name": "bz-rete",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "JavaScript framework",
   "main": "rete.min.js",
   "types": "./src/index.d.ts",
