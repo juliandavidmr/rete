@@ -115,7 +115,7 @@ export class NodeEditor extends Context {
     }
 
     toJSON() {
-        const data: KeyValue2<{ id: string, nodes: any, view: any }> = { id: this.id, nodes: {}, view: {} };
+        const data = { id: this.id, nodes: {} as any, view: {} };
 
         this.nodes.forEach(node => data.nodes[node.id] = node.toJSON());
 
