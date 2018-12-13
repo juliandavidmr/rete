@@ -2,14 +2,13 @@ import { Area } from './area';
 import { Connection } from '../connection';
 import { Emitter } from '../core/emitter';
 import { Connection as ViewConnection } from './connection';
-import { Node as ViewNode } from './node';
+import { Node as NodeView } from './node';
 import { Node as Node2 } from '../node';
 import { Component } from '../component';
-import { Throw } from '../helpers/throw';
 
 export class EditorView extends Emitter {
 
-    nodes = new Map<Node2, ViewNode>();
+    nodes = new Map<Node2, NodeView>();
     connections = new Map<Connection, ViewConnection>();
     area: Area;
 
@@ -28,7 +27,7 @@ export class EditorView extends Emitter {
     }
 
     addNode(node: Node2) {
-        const nodeView = new ViewNode(node, this.components.get(node.name), this);
+        const nodeView = new NodeView(node, this.components.get(node.name), this);
 
         this.nodes.set(node, nodeView);
         this.area.appendChild(nodeView.el);
@@ -40,7 +39,7 @@ export class EditorView extends Emitter {
             this.nodes.delete(node);
             this.area.removeChild(nodeView.el);
         } else {
-            console.error(`The node ${node.name} can not remove.`, nodeView, node)
+            this.trigger('error', [`The node ${node.name} can not remove.`, nodeView, node]);
         }
     }
 

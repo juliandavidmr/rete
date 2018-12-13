@@ -21,7 +21,7 @@ export class Drag {
         window.addEventListener('touchend', this.up.bind(this));
     }
 
-    getCoords(e: any) {
+    private getCoords(e: any) {
         const props = e.touches ? e.touches[0] : e;
         return [props.pageX, props.pageY];
     }

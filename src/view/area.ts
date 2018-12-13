@@ -88,4 +88,15 @@ export class Area extends Emitter {
     removeChild(el: HTMLElement) {
         this.el.removeChild(el)
     }
+
+    public toJSON() {
+        return {
+            area: {
+                zoom: {
+                    distance: this._zoom_.distance,
+                    intensity: this._zoom_.intensity
+                }
+            }
+        }
+    }
 }

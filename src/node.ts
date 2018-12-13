@@ -55,20 +55,15 @@ export class Node {
         return this;
     }
 
-    removeOutput(output: Output | string) {
-        if (output instanceof Output) {
-            output.removeConnections();
-            output.node = null;
-            this.outputs.delete(output.key);
-        } else if (typeof output === 'string' && this.outputs.has(output)) {
-            const auxOutput = this.outputs.get(output);
+    removeOutput(output: Output) {
+        output.removeConnections();
+        output.node = null;
+        this.outputs.delete(output.key);
+    }
 
-            auxOutput.removeConnections();
-            auxOutput.node = null;
-            this.outputs.delete(auxOutput.key);
-        } else {
-            Throw.error`Output does not exist in this node.`;
-        }
+    removeOutputByIndex(index: number) {
+        const output = Array.from(this.outputs.values())[index];
+        this.removeOutput(output);
     }
 
     getConnections() {

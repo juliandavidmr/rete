@@ -11,6 +11,7 @@ import { Validator } from './core/validator';
 import { Throw } from './helpers/throw';
 
 type KeyValue = { [key: string]: any };
+type KeyValue2<T> = { [key: string]: T };
 
 export class NodeEditor extends Context {
 
@@ -114,9 +115,12 @@ export class NodeEditor extends Context {
     }
 
     toJSON() {
-        const data: KeyValue = { id: this.id, nodes: {} };
+        const data: KeyValue2<{ id: string, nodes: any, view: any }> = { id: this.id, nodes: {}, view: {} };
 
         this.nodes.forEach(node => data.nodes[node.id] = node.toJSON());
+
+        data.view = this.view.area.toJSON();
+
         this.trigger('export', data);
         return data;
     }
