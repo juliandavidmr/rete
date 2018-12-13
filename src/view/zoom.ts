@@ -16,7 +16,7 @@ export class Zoom {
             e.preventDefault();
 
             var rect = this.el.getBoundingClientRect();
-            var delta = (e.wheelDelta ? e.wheelDelta / 120 : - e.deltaY / 3) * this.intensity;
+            var delta = ((e as any).wheelDelta ? (e as any).wheelDelta / 120 : - e.deltaY / 3) * this.intensity;
 
             var ox = (rect.left - e.clientX) * delta;
             var oy = (rect.top - e.clientY) * delta;
