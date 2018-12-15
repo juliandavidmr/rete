@@ -5,8 +5,8 @@ import { Socket } from './socket';
 
 export class Output extends IO {
 
-    constructor(key: string, title: string, socket: Socket, multiConns: boolean = true) {
-        super(key, title, socket, multiConns);
+    constructor(key: string, name: string, socket: Socket, multiConns: boolean = true) {
+        super(key, name, socket, multiConns);
     }
 
     hasConnection() {
