@@ -1,22 +1,25 @@
+import { Handlers } from "../helpers/handlers";
+
 export class Zoom {
 
     distance: number;
     enabled: boolean = true;
 
     constructor(public container: HTMLElement, public el: HTMLElement, public intensity: number, public onzoom: Function) {
-        container.addEventListener('wheel', this.wheel.bind(this));
-        container.addEventListener('touchmove', this.move.bind(this));
-        container.addEventListener('touchend', this.end.bind(this));
-        container.addEventListener('touchcancel', this.end.bind(this));
-        container.addEventListener('dblclick', this.dblclick.bind(this));
+        Handlers.on(container, 'DOMMouseScroll mousewheel', this.wheel.bind(this));
+        Handlers.on(container, 'touchmove', this.move.bind(this));
+        Handlers.on(container, 'touchend', this.end.bind(this));
+        Handlers.on(container, 'touchcancel', this.end.bind(this));
+        Handlers.on(container, 'dblclick', this.dblclick.bind(this));
     }
 
-    wheel(e: WheelEvent) {
+    wheel(e: MouseWheelEvent) {
         if (this.enabled) {
             e.preventDefault();
 
-            var rect = this.el.getBoundingClientRect();
-            var delta = ((e as any).wheelDelta ? (e as any).wheelDelta / 120 : - e.deltaY / 3) * this.intensity;
+            const rect = this.el.getBoundingClientRect();
+            const wheelDelta = Handlers.extractDelta(e);
+            const delta = (wheelDelta ? wheelDelta / 120 : - e.deltaY / 3) * this.intensity;
 
             var ox = (rect.left - e.clientX) * delta;
             var oy = (rect.top - e.clientY) * delta;
