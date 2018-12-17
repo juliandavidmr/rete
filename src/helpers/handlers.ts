@@ -23,7 +23,7 @@ export module Handlers {
                     return e.originalEvent.wheelDelta;
                 }
             }
-            return Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail))); // works with both Chrome and FireFox
+            return Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail))) * 30; // works with both Chrome and FireFox
         }
     }
 }
