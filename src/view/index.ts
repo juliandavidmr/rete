@@ -3,12 +3,12 @@ import { Connection } from '../connection';
 import { Emitter } from '../core/emitter';
 import { Connection as ViewConnection } from './connection';
 import { Node as NodeView } from './node';
-import { Node as Node2 } from '../node';
+import { Node } from '../node';
 import { Component } from '../component';
 
 export class EditorView extends Emitter {
 
-    nodes = new Map<Node2, NodeView>();
+    nodes = new Map<Node, NodeView>();
     connections = new Map<Connection, ViewConnection>();
     area: Area;
 
@@ -26,15 +26,20 @@ export class EditorView extends Emitter {
         container.appendChild(this.area.el);
     }
 
-    addNode(node: Node2) {
+    addNode(node: Node) {
         const nodeView = new NodeView(node, this.components.get(node.name), this);
 
         this.nodes.set(node, nodeView);
         this.area.appendChild(nodeView.el);
     }
 
-    removeNode(node: Node2) {
-        const nodeView = this.nodes.get(node);
+    removeNode(node: Node) {
+        let nodeView = this.nodes.get(node);
+        if (!nodeView) {
+            const nd = Array.from(this.nodes.values()).find(n => n.node.id === node.id);
+            nodeView = this.nodes.get(nd.node);
+        }
+
         if (nodeView) {
             this.nodes.delete(node);
             this.area.removeChild(nodeView.el);
@@ -54,9 +59,12 @@ export class EditorView extends Emitter {
 
     removeConnection(connection: Connection) {
         const connView = this.connections.get(connection);
-
         const response = this.connections.delete(connection);
-        this.area.removeChild(connView.el);
+        if (response) {
+            this.area.removeChild(connView.el);
+        } else {
+            this.trigger('warn', [`Can't remove connection`, connection])
+        }
         return response;
     }
 

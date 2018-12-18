@@ -9,12 +9,12 @@ import { Node as Node2 } from "../node";
 
 export class Node extends Emitter {
 
-    public sockets = new Map<IO, any>();
+    public sockets = new Map<IO, ViewSocket>();
     controls = new Map<any, any>();
     el: HTMLDivElement;
     private _startPosition: any = null;
     private _drag: Drag;
-    position: any;
+    position: [number, number];
 
     constructor(public node: Node2, public component: ComponentEngine, emitter: Emitter) {
         super(emitter);
@@ -32,6 +32,7 @@ export class Node extends Emitter {
             node,
             component: component.data,
             bindSocket: this.bindSocket.bind(this),
+            unbindSocket: this.unbindSocket.bind(this),
             bindControl: this.bindControl.bind(this)
         });
         this.update();
@@ -39,6 +40,10 @@ export class Node extends Emitter {
 
     bindSocket(el: HTMLElement, type: string, io: IO) {
         this.sockets.set(io, new ViewSocket(el, type, io, this.node, this));
+    }
+
+    unbindSocket(io: IO) {
+        this.sockets.delete(io);
     }
 
     bindControl(el: HTMLElement, control: Control) {
